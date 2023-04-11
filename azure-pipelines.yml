@@ -1,6 +1,4 @@
 # File: azure-pipelines.yml
-${{ if eq(variables['Build.SourceBranch'], 'refs/heads/main') }}:
-  name: "main"
 
 resources:
   repositories:
@@ -15,6 +13,8 @@ variables: # Global variables
       app: "azure-devops"
 pool:
   vmImage: ubuntu-latest
+
+name: "main"
 
 trigger:
   - main
