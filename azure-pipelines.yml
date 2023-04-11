@@ -3,7 +3,7 @@
 resources:
   repositories:
     - repository: templates
-      name: azure-ci-cd-playground/pipline-templates
+      name: johan-azure/johan-azure
       type: git
 
 variables: # Global variables
