@@ -16,6 +16,9 @@ pool:
 trigger:
   - main
 
+extends:
+  template: baseStuff.yml@templates # Template reference
+
 jobs:
   - template: npm/npm-with-params.yml@templates # Template reference
     parameters:
