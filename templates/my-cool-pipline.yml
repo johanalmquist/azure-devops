@@ -1,2 +1,18 @@
-steps:
-  - script: echo hello from my-cool-pipeline.yml
+parameters:
+  - name: name # defaults for any parameters that aren't specified
+    default: ""
+  - name: vmImage
+    default: ""
+
+jobs:
+  - job: ${{ parameters.name }}
+    pool:
+      vmImage: ${{ parameters.vmImage }}
+    steps:
+      - script: echo "Hello, world!"
+        displayName: "Run a one-line script"
+      - script: |
+          echo Add other tasks to build, test, and deploy your project.
+          echo See https://aka.ms/yaml
+          echo name is $(name)
+        displayName: "Run a multi-line script"

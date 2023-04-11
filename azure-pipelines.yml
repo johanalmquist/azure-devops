@@ -14,5 +14,8 @@ extends:
   parameters:
     yesNo: true # set to a non-boolean value to have the build fail
 
-extends:
-  template: templates/my-cool-pipeline.yml
+jobs:
+  - template: templates/my-cool-pipeline.yml # Template reference
+    parameters:
+      name: Linux
+      vmImage: "ubuntu-latest"
