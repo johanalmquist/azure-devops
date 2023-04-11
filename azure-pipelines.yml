@@ -10,7 +10,7 @@ trigger:
   - main
 
 jobs:
-  - template: templates/my-cool-pipeline.yml # Template reference
+  - template: templates/my-cool-pipline.yml # Template reference
     parameters:
       name: Linux
       vmImage: "ubuntu-latest"
