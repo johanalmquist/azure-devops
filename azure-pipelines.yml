@@ -1,4 +1,7 @@
 # File: azure-pipelines.yml
+${{ if eq(variables['Build.SourceBranch'], 'refs/heads/main') }}:
+  name: "main"
+
 resources:
   repositories:
     - repository: templates
@@ -15,9 +18,6 @@ pool:
 
 trigger:
   - main
-
-extends:
-  template: baseStuff.yml@templates # Template reference
 
 jobs:
   - template: npm/npm-with-params.yml@templates # Template reference
