@@ -1,6 +1,12 @@
 # File: azure-pipelines.yml
+resources:
+  repositories:
+    - repository: templates
+      type: github
+      name: johanalmquist/azure-devops-templates
+
 variables: # Global variables
-  - template: templates/commonVars.yml # Template reference
+  - template: commonVariables.yml@templates
     parameters:
       app: "azure-devops"
 pool:
@@ -10,7 +16,6 @@ trigger:
   - main
 
 jobs:
-  - template: templates/my-cool-pipline.yml # Template reference
-    parameters:
-      name: Linux
-      vmImage: "ubuntu-latest"
+  - job: build
+    steps:
+      - script: echo "Deploy $(app)"
