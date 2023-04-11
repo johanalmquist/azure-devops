@@ -2,9 +2,9 @@
 resources:
   repositories:
     - repository: templates
-      type: github
       name: johanalmquist/azure-devops-templates
-      endpoint: johanalmquist
+      type: github
+      endpoint: joh-github
 
 variables: # Global variables
   - template: commonVariables.yml@templates
