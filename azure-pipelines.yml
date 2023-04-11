@@ -9,4 +9,4 @@ trigger:
 extends:
   template: templates/simple-param.yml
   parameters:
-    yesNo: false # set to a non-boolean value to have the build fail
+    yesNo: true # set to a non-boolean value to have the build fail
