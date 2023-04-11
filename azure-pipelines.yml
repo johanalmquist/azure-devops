@@ -3,11 +3,8 @@
 resources:
   repositories:
     - repository: templates
-      name: johanalmquist/azure-devops-templates
-      type: github
-      endpoint: joh-github
-      ref: refs/heads/main
-      folder: templates
+      name: azure-ci-cd-playground/pipline-templates
+      type: git
 
 variables: # Global variables
   - template: commonVariables.yml@templates
