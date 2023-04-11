@@ -3,7 +3,7 @@
 resources:
   repositories:
     - repository: templates
-      name: johanalmquist/azure-devops-templates
+      name: johanalmquist/azure-devops-templates/templates
       type: github
       endpoint: joh-github
 
