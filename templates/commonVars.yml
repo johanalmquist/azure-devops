@@ -1,0 +1,7 @@
+parameters:
+  - name: app
+    type: string
+
+variables:
+  - name: RELEASE_COMMAND
+    value: grep version ${{ parameters.DIRECTORY }}/package.json | awk -F \" '{print $4}'

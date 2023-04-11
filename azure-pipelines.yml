@@ -1,5 +1,8 @@
 # File: azure-pipelines.yml
-
+variables: # Global variables
+  - template: templates/commonVars.yml # Template reference
+    parameters:
+      app: "azure-devops"
 pool:
   vmImage: ubuntu-latest
 
