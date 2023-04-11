@@ -14,8 +14,6 @@ variables: # Global variables
 pool:
   vmImage: ubuntu-latest
 
-name: "main"
-
 trigger:
   - main
 
