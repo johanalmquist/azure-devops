@@ -17,6 +17,17 @@ trigger:
   - main
 
 jobs:
-  - job: build
-    steps:
-      - script: echo "Deploy $(app)"
+  - template: npm/npm-with-params.yml@templates # Template reference
+    parameters:
+      name: Linux
+      vmImage: "ubuntu-latest"
+
+  - template: npm/npm-with-params.yml@templates # Template reference
+    parameters:
+      name: macOS
+      vmImage: "macOS-latest"
+
+  - template: npm/npm-with-params.yml@templates # Template reference
+    parameters:
+      name: Windows
+      vmImage: "windows-latest"
