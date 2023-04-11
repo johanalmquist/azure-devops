@@ -6,4 +6,4 @@ parameters:
 steps:
   - script: echo ${{ parameters.yesNo }}
 steps:
-  - script: echo ${{ $(app) }}
+  - script: echo app is $(app)
