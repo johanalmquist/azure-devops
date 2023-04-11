@@ -24,10 +24,5 @@ jobs:
 
   - template: npm/npm-with-params.yml@templates # Template reference
     parameters:
-      name: macOS
-      vmImage: "macOS-latest"
-
-  - template: npm/npm-with-params.yml@templates # Template reference
-    parameters:
       name: Windows
       vmImage: "windows-latest"
