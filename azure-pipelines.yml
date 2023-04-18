@@ -11,8 +11,6 @@ variables: # Global variables
   - template: commonVariables.yml@templates
     parameters:
       app: "azure-devops"
-  - name: onlyTest
-    value: false
 pool:
   vmImage: ubuntu-latest
 
@@ -24,10 +22,8 @@ jobs:
     parameters:
       name: Linux
       vmImage: "ubuntu-latest"
-    condition: eq(variables['onlyTest'], true)
 
   - template: npm/npm-with-params.yml@templates # Template reference
     parameters:
       name: Windows
       vmImage: "windows-latest"
-    condition: eq(variables['onlyTest'], false)
