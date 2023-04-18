@@ -1,47 +1,33 @@
-# # File: azure-pipelines.yml
+# File: azure-pipelines.yml
 
-# resources:
-#   repositories:
-#     - repository: templates
-#       name: johanalmquist/azure-devops-templates
-#       type: github
-#       endpoint: joh-github
+resources:
+  repositories:
+    - repository: templates
+      name: johanalmquist/azure-devops-templates
+      type: github
+      endpoint: joh-github
 
-# variables: # Global variables
-#   - template: commonVariables.yml@templates
-#     parameters:
-#       app: "azure-devops"
+variables: # Global variables
+  - template: commonVariables.yml@templates
+    parameters:
+      app: "azure-devops"
+  - name: onlyTest
+    value: false
 pool:
   vmImage: ubuntu-latest
 
 trigger:
   - main
 
-# jobs:
-#   - template: npm/npm-with-params.yml@templates # Template reference
-#     parameters:
-#       name: Linux
-#       vmImage: "ubuntu-latest"
+jobs:
+  - template: npm/npm-with-params.yml@templates # Template reference
+    parameters:
+      name: Linux
+      vmImage: "ubuntu-latest"
+    condition: eq(variables['onlyTest'], true)
 
-#   - template: npm/npm-with-params.yml@templates # Template reference
-#     parameters:
-#       name: Windows
-#       vmImage: "windows-latest"
-
-strategy:
-  matrix:
-    Python310:
-      python.version: "3.10"
-
-steps:
-  - task: UsePythonVersion@0
-    inputs:
-      versionSpec: "$(python.version)"
-    displayName: "Use Python $(python.version)"
-
-  - script: |
-      python3 install-poetry.py --version 1.4.1
-    displayName: "Installing poetry"
-  - script: |
-      poetry --version
-    displayName: "Checking poetry version"
+  - template: npm/npm-with-params.yml@templates # Template reference
+    parameters:
+      name: Windows
+      vmImage: "windows-latest"
+    condition: eq(variables['onlyTest'], false)
