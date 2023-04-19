@@ -17,13 +17,25 @@ pool:
 trigger:
   - main
 
-jobs:
-  - template: npm/npm-with-params.yml@templates # Template reference blabla
-    parameters:
-      name: Linux
-      vmImage: "ubuntu-latest"
+stages:
+  - template: setup_env_stage.yml@templates
+  - stage: print_linux
+    displayName: Print Linux
+    jobs:
+      - job: print_linux
+        displayName: Print Linux
+        variables:
+          COMMIT_MESSAGE: $[stageDependencies.setup_environment_stage.setup_environment_job.outputs['RuntimeVariables.COMMIT_MESSAGE']]
+        steps:
+          - script: echo COMMIT_MESSAGE is $(COMMIT_MESSAGE)
+            displayName: Print commit message
+# jobs:
+#   - template: npm/npm-with-params.yml@templates # Template reference blabla
+#     parameters:
+#       name: Linux
+#       vmImage: "ubuntu-latest"
 
-  - template: npm/npm-with-params.yml@templates # Template reference
-    parameters:
-      name: Windows
-      vmImage: "windows-latest"
+#   - template: npm/npm-with-params.yml@templates # Template reference
+#     parameters:
+#       name: Windows
+#       vmImage: "windows-latest"
