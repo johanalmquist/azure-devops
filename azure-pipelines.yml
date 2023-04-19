@@ -23,7 +23,7 @@ stages:
       - job: print_linux
         displayName: Print Linux
         variables:
-          COMMIT_MESSAGE: $[stageDependencies.setup_environment_stage.setup_environment_job.outputs['RuntimeVariables.COMMIT_MESSAGE']]
+          COMMIT_MESSAGE: $[stageDependencies.setup_environment_stage.setup_environment_job.outputs['setvariable.COMMIT_MESSAGE']]
         steps:
           - script: echo COMMIT_MESSAGE is $(COMMIT_MESSAGE)
             displayName: Print commit message
