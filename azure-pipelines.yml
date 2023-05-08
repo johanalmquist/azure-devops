@@ -15,7 +15,7 @@ stages:
               verbose: true
               rules: |
                 [TerraformChanged]
-                terraform/*.tf
+                terraform/**/*.tf
 
                 [FooChanged]
                 foo/**
