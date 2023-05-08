@@ -20,5 +20,19 @@ variables:
     value: "This is my sweet variable"
 
 stages:
+  - stage: gitversion
+    jobs:
+      - job: gitversion
+        steps:
+          - checkout: self
+            persistCredentials: true
+          - task: gitversion/setup@0
+            displayName: "Install GitTools"
+            inputs:
+            versionSpec: "5.3.x"
+          - task: gitversion/execute@0
+            displayName: "Calculate SemVer"
+          - script: echo current version is $(GitVersion.SemVer)
+            displayName: "Display calculated version"
   - template: precheck.yaml@templates
   - template: terraform.yaml@templates
