@@ -8,10 +8,8 @@ jobs:
         name: CheckChanges
         inputs:
           cwd: terraform
-          rules: **
           variable: HasChanged
           verbose: true
-        
 
   - job: build
     displayName: Build only when code changes
