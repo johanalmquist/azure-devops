@@ -7,7 +7,7 @@ jobs:
       - task: ChangedFiles@1
         name: CheckChanges
         inputs:
-          rules: "**.tf"
+          rules: /*.tf
           variable: HasChanged
 
   - job: build
