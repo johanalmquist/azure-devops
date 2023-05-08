@@ -2,6 +2,7 @@ trigger:
   branches:
     include:
       - main
+      - develop
 
 pr: none
 
@@ -35,7 +36,6 @@ stages:
             inputs:
               useConfigFile: true
               configFilePath: "GitVersion.yml"
-              updateAssemblyInfo: true
             displayName: Use GitVersion
   - template: precheck.yaml@templates
   - template: terraform.yaml@templates
