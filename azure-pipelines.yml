@@ -25,7 +25,6 @@ stages:
       - job: gitversion
         steps:
           - checkout: self
-            persistCredentials: true
           - task: gitversion/setup@0
             displayName: "Install GitTools"
             inputs:
