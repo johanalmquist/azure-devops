@@ -1,26 +1,19 @@
-resources:
-  repositories:
-    - repository: templates
-      name: Aranya-Devops-Templates/Aranya-Devops-Templates
-      type: git
+jobs:
+  - job: check
+    displayName: Check changed files
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+      - task: ChangedFiles@1
+        name: CheckChanges
+        inputs:
+          rules: terraform/**/*.tf
+          variable: HasChanged
+          verbose: true
 
-pool:
-  vmImage: "ubuntu-latest"
-
-trigger:
-  - main
-
-stages:
-  - template: terraform.yaml@templates
-    parameters:
-      environment: staging
-      serviceName: johan-devops-test
-  - stage: deploy
-    displayName: Deploy
-    dependsOn: terraform
-    condition: succeeded('terraform')
-    jobs:
-      - job: deploy
-        displayName: Deploy
-        steps:
-          - script: echo "Deploying"
+  - job: build
+    displayName: Build only when code changes
+    dependsOn: check
+    condition: eq(dependencies.check.outputs['CheckChanges.HasChanged'], 'true')
+    steps:
+      - script: echo "Build"
