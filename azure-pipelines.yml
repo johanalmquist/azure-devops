@@ -12,20 +12,20 @@ stages:
             inputs:
               refBranch: main
               rules: |
-                [BarChanged]
-                bar/**
+                [TerraformChanged]
+                terraform/**
 
                 [FooChanged]
                 foo/**
 
   - stage: bar_has_changed
     dependsOn: ["pre"]
-    displayName: This stage runs only when the `BarChanged` variable is true
-    condition: eq(dependencies.pre.outputs['check.CheckChanges.BarChanged'], 'true')
+    displayName: This stage runs only when the `TerraformChanged` variable is true
+    condition: eq(dependencies.pre.outputs['check.CheckChanges.TerraformChanged'], 'true')
     jobs:
       - job: run
         steps:
-          - script: echo "Bar has changed"
+          - script: echo "TerraformChanged has changed"
 
   - stage: foo_has_changed
     dependsOn: ["pre"]
