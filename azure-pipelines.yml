@@ -10,10 +10,10 @@ stages:
           - task: ChangedFiles@1
             name: CheckChanges
             inputs:
-              refBranch: main
+              verbose: true
               rules: |
                 [TerraformChanged]
-                terraform/**
+                terraform/*.tf
 
                 [FooChanged]
                 foo/**
