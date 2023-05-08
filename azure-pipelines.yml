@@ -13,6 +13,5 @@ trigger:
 stages:
   - template: terraform.yaml@templates
     parameters:
-      azureSubscription: "Cledara - Managed Services(4a285b73-b7bf-4e65-8902-65c67259cb2f)"
       environment: staging
       serviceName: johan-devops-test
