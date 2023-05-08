@@ -26,11 +26,15 @@ stages:
         steps:
           - checkout: self
             fetchDepth: 0
-          - task: gitversion@5
-            displayName: US GitVersion
+          - task: gitversion/setup@0
+            displayName: Install GitVersion
             inputs:
               versionSpec: "5.x"
-              updateAssemblyInfo: true
-              updateAssemblyInfoFilename: "**/AssemblyInfo.*"
+          - task: gitversion/execute@0
+            name: version # id to later be referenced
+            inputs:
+              updateAssemblyInfo: true # will update the AssemblyInfo.cs file
+              updateAssemblyInfoFilename: "**/AssemblyInfo.cs" # will update all AssemblyInfo.cs files in the repo
+            displayName: Use GitVersion
   - template: precheck.yaml@templates
   - template: terraform.yaml@templates
