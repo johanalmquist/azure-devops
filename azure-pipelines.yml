@@ -15,3 +15,12 @@ stages:
     parameters:
       environment: staging
       serviceName: johan-devops-test
+  - stage: deploy
+    displayName: Deploy
+    dependsOn: terraform
+    condition: succeeded('terraform')
+    jobs:
+      - job: deploy
+        displayName: Deploy
+        steps:
+          - script: echo "Deploying"
