@@ -7,6 +7,8 @@ stages:
       - job: check
         displayName: Check changed files
         steps:
+          - checkout: self
+            fetchDepth: "0"
           - task: ChangedFiles@1.2.3
             name: CheckChanges
             inputs:
