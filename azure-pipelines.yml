@@ -7,7 +7,7 @@ jobs:
       - task: ChangedFiles@1
         name: CheckChanges
         inputs:
-          rules: terraform/**/*.tf
+          rules: "**.tf"
           variable: HasChanged
           verbose: true
 
