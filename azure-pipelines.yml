@@ -4,6 +4,10 @@ resources:
       name: Aranya-Devops-Templates/Aranya-Devops-Templates
       type: git
 
+variables:
+  - name: my_sweet_variable
+    value: "This is my sweet variable"
+
 trigger:
   - main
 
