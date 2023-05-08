@@ -9,7 +9,6 @@ jobs:
         inputs:
           rules: "**.tf"
           variable: HasChanged
-          verbose: true
 
   - job: build
     displayName: Build only when code changes
