@@ -3,14 +3,19 @@ resources:
     - repository: templates
       name: Aranya-Devops-Templates/Aranya-Devops-Templates
       type: git
+
+trigger:
+  - main
+
 pool:
   vmImage: ubuntu-latest
 
 stages:
-  - template: terraform.yaml@templates
-  - stage: deploy
+  - stage: Install
     jobs:
-      - job: run
-        displayName: Run
+      - job: npminstall
         steps:
-          - script: echo "Hello World"
+          - task: Npm@1
+            inputs:
+              command: "install"
+  - template: terraform.yaml@templates
