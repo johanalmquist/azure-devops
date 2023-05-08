@@ -33,17 +33,5 @@ stages:
           - task: gitversion/execute@0
             name: version # id to later be referenced
             displayName: Use GitVersion
-          - task: CmdLine@2
-            displayName: Init git global config
-            inputs:
-              script: |
-                git config --global user.email "devops@aranya.se"
-                git config --global user.name "CI / CD Pipeline"
-          - task: CmdLine@2
-            displayName: Create Git tag for current version
-            inputs:
-              script: |
-                git tag -a $(GitVersion.SemVer) -m "Tagged version $(GitVersion.SemVer)"
-                git push origin $(GitVersion.SemVer)
   - template: precheck.yaml@templates
   - template: terraform.yaml@templates
