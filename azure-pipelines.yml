@@ -35,6 +35,7 @@ stages:
             inputs:
               useConfigFile: true
               configFilePath: ".azuredevops/gitversion.yml"
+              updateAssemblyInfo: true # will update the AssemblyInfo.cs file
             displayName: Use GitVersion
   - template: precheck.yaml@templates
   - template: terraform.yaml@templates
