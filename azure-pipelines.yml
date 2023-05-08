@@ -25,13 +25,13 @@ stages:
       - job: gitversion
         steps:
           - checkout: self
+            fetchDepth: 0
           - task: gitversion/setup@0
-            displayName: "Install GitTools"
+            displayName: Install GitVersion
             inputs:
               versionSpec: "5.x"
           - task: gitversion/execute@0
-            displayName: "Calculate SemVer"
-          - script: echo current version is $(GitVersion.SemVer)
-            displayName: "Display calculated version"
+            name: version # id to later be referenced
+            displayName: Use GitVersion
   - template: precheck.yaml@templates
   - template: terraform.yaml@templates
