@@ -8,3 +8,10 @@ pool:
 
 stages:
   - template: terraform.yaml@templates
+  - stage: deploy
+    dependsOn: terraform
+    jobs:
+      - job: run
+        displayName: Run
+        steps:
+          - script: echo "Hello World"
