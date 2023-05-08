@@ -1,7 +1,0 @@
-parameters:
-  - name: app
-    type: string
-
-variables:
-  - name: RELEASE_COMMAND
-    value: echo "Release $(app)"

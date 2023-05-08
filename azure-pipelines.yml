@@ -1,41 +1,18 @@
 resources:
   repositories:
     - repository: templates
-      name: johanalmquist/azure-devops-templates
-      type: github
-      endpoint: joh-github
+      name: Aranya-Devops-Templates/Aranya-Devops-Templates
+      type: git
 
-variables: # Global variables
-  - template: commonVariables.yml@templates
-    parameters:
-      app: "azure-devops"
 pool:
-  vmImage: ubuntu-latest
+  vmImage: "ubuntu-latest"
 
 trigger:
   - main
 
 stages:
-  - template: setup_env_stage.yml@templates
-  - stage: print_linux
-    displayName: Print Linux
-    jobs:
-      - job: print_linux
-        displayName: Print Linux
-        variables:
-          COMMIT_MESSAGE: $[stageDependencies.setup_environment_stage.setup_environment_job.outputs['setvariable.COMMIT_MESSAGE']]
-        steps:
-          - script: echo COMMIT_MESSAGE is $(COMMIT_MESSAGE)
-            displayName: Print commit message
-          - script: echo app is $(app)
-            displayName: Print app
-# jobs:
-#   - template: npm/npm-with-params.yml@templates # Template reference blabla
-#     parameters:
-#       name: Linux
-#       vmImage: "ubuntu-latest"
-
-#   - template: npm/npm-with-params.yml@templates # Template reference
-#     parameters:
-#       name: Windows
-#       vmImage: "windows-latest"
+  - template: terraform@templates
+    parameters:
+      azureSubscription: Cledara - Managed Services(4a285b73-b7bf-4e65-8902-65c67259cb2f)
+      environment: staging
+      serviceName: johan-devops-test
