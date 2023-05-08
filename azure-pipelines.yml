@@ -32,6 +32,9 @@ stages:
               versionSpec: "5.x"
           - task: gitversion/execute@0
             name: version # id to later be referenced
+            inputs:
+              useConfigFile: true
+              configFilePath: ".azuredevops/gitversion.yml"
             displayName: Use GitVersion
   - template: precheck.yaml@templates
   - template: terraform.yaml@templates
