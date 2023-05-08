@@ -35,6 +35,6 @@ output "latest_version" {
   value = jsondecode(data.http.example.response_body)
 }
 
-output "respone_code" {
+output "respone_code_bla" {
   value = data.http.example.status_code
 }
