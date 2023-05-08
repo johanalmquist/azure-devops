@@ -18,7 +18,7 @@ stages:
                 [FooChanged]
                 foo/**
 
-  - stage: bar_has_changed
+  - stage: terra_has_changed
     dependsOn: ["pre"]
     displayName: This stage runs only when the `TerraformChanged` variable is true
     condition: eq(dependencies.pre.outputs['check.CheckChanges.TerraformChanged'], 'true')
