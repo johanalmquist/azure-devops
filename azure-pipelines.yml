@@ -7,8 +7,11 @@ jobs:
       - task: ChangedFiles@1
         name: CheckChanges
         inputs:
-          rules: /*.tf
+          cwd: terraform
+          rules: **
           variable: HasChanged
+          verbose: true
+        
 
   - job: build
     displayName: Build only when code changes
