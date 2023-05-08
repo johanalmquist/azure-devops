@@ -26,16 +26,11 @@ stages:
         steps:
           - checkout: self
             fetchDepth: 0
-          - task: gitversion/setup@0
-            displayName: Install GitVersion
+          - task: gitversion@5
+            displayName: US GitVersion
             inputs:
               versionSpec: "5.x"
-          - task: gitversion/execute@0
-            name: version # id to later be referenced
-            inputs:
-              useConfigFile: true
-              configFilePath: ".azuredevops/gitversion.yml"
-              updateAssemblyInfo: true # will update the AssemblyInfo.cs file
-            displayName: Use GitVersion
+              updateAssemblyInfo: true
+              updateAssemblyInfoFilename: "**/AssemblyInfo.*"
   - template: precheck.yaml@templates
   - template: terraform.yaml@templates
