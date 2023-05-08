@@ -7,7 +7,7 @@ stages:
       - job: check
         displayName: Check changed files
         steps:
-          - task: ChangedFiles@0
+          - task: ChangedFiles@1.2.3
             name: CheckChanges
             inputs:
               verbose: true
