@@ -5,6 +5,7 @@ resources:
       type: git
 
 variables:
+  - template: commonVariables.yaml@templates
   - name: my_sweet_variable
     value: "This is my sweet variable"
 
