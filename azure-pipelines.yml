@@ -21,21 +21,5 @@ variables:
     value: "This is my sweet variable"
 
 stages:
-  - stage: gitversion
-    jobs:
-      - job: gitversion
-        steps:
-          - checkout: self
-            fetchDepth: 0
-          - task: gitversion/setup@0
-            displayName: Install GitVersion
-            inputs:
-              versionSpec: "5.x"
-          - task: gitversion/execute@0
-            name: version # id to later be referenced
-            inputs:
-              useConfigFile: true
-              configFilePath: "GitVersion.yml"
-            displayName: Use GitVersion
   - template: precheck.yaml@templates
   - template: terraform.yaml@templates
