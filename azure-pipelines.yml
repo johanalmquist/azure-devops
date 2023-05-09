@@ -17,6 +17,9 @@ resources:
   pipelines:
     - pipeline: johanalmquist.azure-devops
       source: ja
+      trigger:
+        branches:
+          - main
 
 variables:
   - template: commonVariables.yaml@templates
