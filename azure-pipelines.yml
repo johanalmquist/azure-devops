@@ -39,8 +39,8 @@ steps:
   - task: gitversion/execute@0
     name: version # id to later be referenced
     inputs:
-      useConfigFile: ${{ parameters.useConfigFile }}
-      configFilePath: "${{ parameters.configFilePath }}"
+      useConfigFile: true
+      configFilePath: "GitVersion.yml"
       updateAssemblyInfo: true
     displayName: Determine Version
   - bash: |
