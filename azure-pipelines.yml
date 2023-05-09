@@ -24,27 +24,7 @@ variables:
   - name: test_var
     value: true
 
-# stages:
-#   - template: precheck.yaml@templates
-#   - template: terraform.yaml@templates
-#   - template: dockerbuild.yaml@templates
-
-steps:
-  - checkout: self
-    fetchDepth: 0
-  - task: gitversion/setup@0
-    displayName: Install GitVersion
-    inputs:
-      versionSpec: "5.x"
-  - task: gitversion/execute@0
-    inputs:
-      useConfigFile: true
-      configFilePath: "GitVersion.yml"
-      updateAssemblyInfo: true
-    displayName: Determine Version
-  - bash: |
-      echo "Major $(GitVersion.major)"
-      echo "Minor $(GitVersion.minor)"
-      echo "Patch $(GitVersion.patch)"
-      echo "SemVer $(GitVersion.semVer)"
-    displayName: Display GitVersion outputs (step output)
+stages:
+  - template: precheck.yaml@templates
+  - template: terraform.yaml@templates
+  - template: dockerbuild.yaml@templates
