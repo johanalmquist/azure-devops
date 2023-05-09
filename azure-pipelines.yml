@@ -37,22 +37,14 @@ steps:
     inputs:
       versionSpec: "5.x"
   - task: gitversion/execute@0
-    name: version # id to later be referenced
     inputs:
       useConfigFile: true
       configFilePath: "GitVersion.yml"
       updateAssemblyInfo: true
     displayName: Determine Version
   - bash: |
-      echo "Major $(version.major)"
-      echo "Minor $(version.minor)"
-      echo "Patch $(version.patch)"
-      echo "SemVer $(version.semVer)"
+      echo "Major $(GitVersion.major)"
+      echo "Minor $(GitVersion.minor)"
+      echo "Patch $(GitVersion.patch)"
+      echo "SemVer $(GitVersion.semVer)"
     displayName: Display GitVersion outputs (step output)
-
-  - bash: |
-      echo "Major $(version.GitVersion_Major)"
-      echo "Minor $(version.GitVersion_Minor)"
-      echo "Patch $(version.GitVersion_Patch)"
-      echo "SemVer $(version.GitVersion_SemVer)"
-    displayName: Display GitVersion outputs (step output with prefix)
