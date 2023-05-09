@@ -15,17 +15,22 @@ resources:
       name: Aranya-Devops-Templates/Aranya-Devops-Templates
       type: git
 
-variables:
-  - template: commonVariables.yaml@templates
-  - name: my_sweet_variable
-    value: "This is my sweet variable"
-  - name: app
-    value: "my-app"
-  - name: test_var
-    value: true
+steps:
+  - task: DownloadBuildArtifacts@1
+    displayName: Download Plan Atrifact
+    inputs:
+      artifactName: "2124-api-people-billing-staging-tfplan"
+# variables:
+#   - template: commonVariables.yaml@templates
+#   - name: my_sweet_variable
+#     value: "This is my sweet variable"
+#   - name: app
+#     value: "my-app"
+#   - name: test_var
+#     value: true
 
-stages:
-  - template: precheck.yaml@templates
-  - template: terraform.yaml@templates
-  - template: dockerbuild.yaml@templates
-  - template: k8s.yaml@templates
+# stages:
+#   - template: precheck.yaml@templates
+#   - template: terraform.yaml@templates
+#   - template: dockerbuild.yaml@templates
+#   - template: k8s.yaml@templates
