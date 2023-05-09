@@ -22,7 +22,7 @@ variables:
   - name: app
     value: "my-app"
   - name: test_var
-    value: false
+    value: true
 
 stages:
   - template: precheck.yaml@templates
