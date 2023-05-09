@@ -1,1 +1,1 @@
-print("Hello from app/__init__.py")
+print("Hello from app/__init__.py ihihi")
