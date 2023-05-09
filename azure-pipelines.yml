@@ -19,7 +19,10 @@ variables:
   - template: commonVariables.yaml@templates
   - name: my_sweet_variable
     value: "This is my sweet variable"
+  - name: app
+    value: "my-app"
 
 stages:
   - template: precheck.yaml@templates
   - template: terraform.yaml@templates
+  - template: dockerbuild.yaml@templates
