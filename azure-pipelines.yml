@@ -24,10 +24,10 @@ variables:
   - name: test_var
     value: true
 
-stages:
-  - template: precheck.yaml@templates
-  - template: terraform.yaml@templates
-  - template: dockerbuild.yaml@templates
+# stages:
+#   - template: precheck.yaml@templates
+#   - template: terraform.yaml@templates
+#   - template: dockerbuild.yaml@templates
 
 steps:
   - checkout: self
