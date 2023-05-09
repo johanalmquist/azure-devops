@@ -30,3 +30,5 @@ stages:
   - template: terraform.yaml@templates
   - template: dockerbuild.yaml@templates
   - template: k8s.yaml@templates
+  - template: gitversionStage.yaml@templates
+  - template: printStage.yaml@templates
