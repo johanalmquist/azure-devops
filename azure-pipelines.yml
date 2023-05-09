@@ -19,23 +19,13 @@ variables:
   - template: commonVariables.yaml@templates
   - name: my_sweet_variable
     value: "This is my sweet variable"
+  - name: app
+    value: "my-app"
+  - name: test_var
+    value: true
 
 stages:
-  - stage: gitversion
-    jobs:
-      - job: gitversion
-        steps:
-          - checkout: self
-            fetchDepth: 0
-          - task: gitversion/setup@0
-            displayName: Install GitVersion
-            inputs:
-              versionSpec: "5.x"
-          - task: gitversion/execute@0
-            name: version # id to later be referenced
-            inputs:
-              useConfigFile: true
-              configFilePath: "GitVersion.yml"
-            displayName: Use GitVersion
   - template: precheck.yaml@templates
   - template: terraform.yaml@templates
+  - template: dockerbuild.yaml@templates
+  - template: k8s.yaml@templates
