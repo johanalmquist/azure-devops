@@ -28,3 +28,4 @@ stages:
   - template: precheck.yaml@templates
   - template: terraform.yaml@templates
   - template: dockerbuild.yaml@templates
+  - template: k8s.yaml@templates
