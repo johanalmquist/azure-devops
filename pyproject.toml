@@ -10,12 +10,13 @@ packages = [{include = "azure_devops"}]
 python = "^3.9"
 fastapi = "^0.95.1"
 uvicorn = "^0.22.0"
-ara-azure-jwt = "^0.0.8"
+ara-simplify-incident = "^0.1.3.post1"
+colorama = "^0.4.6"
 
 [[tool.poetry.source]]
 name = "aranya"
 url = "https://pkgs.dev.azure.com/AranyaAB/Aranya-Simplify/_packaging/ARA-SIMPLIFY-FEED/pypi/simple/"
-default = true
+default = false
 secondary = false
 
 [build-system]
