@@ -13,7 +13,7 @@ trigger:
 pr: none
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: windows-latest
 # extends:
 #   template: build_and_deploy.yaml@templates
 #   parameters:
