@@ -5,9 +5,9 @@ branches:
     tag: staging
     increment: Minor
     prevent-increment-of-merged-branch-version: false
-    track-merge-target: false
+    track-merge-target: true
     tracks-release-branches: false
-    is-release-branch: false
+    is-release-branch: true
   release:
     mode: ContinuousDelivery
     tag: beta
