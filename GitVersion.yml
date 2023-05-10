@@ -2,7 +2,6 @@ mode: ContinuousDelivery
 branches:
   main:
     mode: ContinuousDeployment
-    tag: alpha
     increment: Minor
     prevent-increment-of-merged-branch-version: false
     track-merge-target: true
