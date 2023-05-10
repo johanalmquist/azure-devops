@@ -19,4 +19,3 @@ extends:
   template: build_and_deploy.yaml@templates
   parameters:
     appName: "my-app"
-    useTerraform: false
