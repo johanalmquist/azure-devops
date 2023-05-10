@@ -13,7 +13,7 @@ trigger:
 pr: none
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: ara-devops-agents-01
 
 extends:
   template: build_and_deploy.yaml@templates
