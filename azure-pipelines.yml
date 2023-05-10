@@ -25,10 +25,13 @@ variables:
     value: "my-app"
   - name: test_var
     value: true
-stages:
-  # - template: precheck.yaml@templates
-  # - template: terraform.yaml@templates
-  # - template: dockerbuild.yaml@templates
-  # - template: k8s.yaml@templates
-  - template: blocks/gitversionStage.yaml@templates
-  - template: blocks/printStage.yaml@templates
+# stages:
+#   # - template: precheck.yaml@templates
+#   # - template: terraform.yaml@templates
+#   # - template: dockerbuild.yaml@templates
+#   # - template: k8s.yaml@templates
+#   - template: blocks/gitversionStage.yaml@templates
+#   - template: blocks/printStage.yaml@templates
+
+extends:
+  template: my-template.yaml
