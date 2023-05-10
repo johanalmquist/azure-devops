@@ -1,5 +1,3 @@
---index-url https://pkgs.dev.azure.com/AranyaAB/Aranya-Simplify/_packaging/ARA-SIMPLIFY-FEED/pypi/simple
-
 anyio==3.6.2 ; python_version >= "3.9" and python_version < "4.0"
 ara-simplify-incident==0.1.3.post1 ; python_version >= "3.9" and python_version < "4.0"
 asyncio==3.4.3 ; python_version >= "3.9" and python_version < "4.0"
