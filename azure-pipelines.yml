@@ -16,7 +16,7 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
-  - template: commonVariables.yaml@templates
+  - template: variables/commonVariables.yaml@templates
     parameters:
       azureSubscription: "Cledara - Managed Services - azure-ci-cd-playground"
   - name: my_sweet_variable
@@ -30,5 +30,5 @@ stages:
   # - template: terraform.yaml@templates
   # - template: dockerbuild.yaml@templates
   # - template: k8s.yaml@templates
-  - template: gitversionStage.yaml@templates
-  - template: printStage.yaml@templates
+  - template: blocks/gitversionStage.yaml@templates
+  - template: blocks/printStage.yaml@templates
