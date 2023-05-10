@@ -14,8 +14,18 @@ pr: none
 
 pool:
   vmImage: ubuntu-latest
+# extends:
+#   template: build_and_deploy.yaml@templates
+#   parameters:
+#     appName: "my-app"
 
-extends:
-  template: build_and_deploy.yaml@templates
-  parameters:
-    appName: "my-app"
+steps:
+  - bash: |
+      set -a
+      source version.env
+      set +a
+    displayName: "Load version.env"
+  - bash: env
+    displayName: "Print env"
+  - bash: echo $(TESTVERSION)
+    displayName: "Print TESTVERSION"
