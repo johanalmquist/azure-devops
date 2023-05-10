@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "azure-devops"
+version = "0.1.0"
+description = ""
+authors = ["Johan Almquist <johan.almquist@aranya.se>"]
+readme = "README.md"
+packages = [{include = "azure_devops"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+fastapi = "^0.95.1"
+uvicorn = "^0.22.0"
+ara-azure-jwt = "^0.0.8"
+
+[[tool.poetry.source]]
+name = "aranya"
+url = "https://pkgs.dev.azure.com/AranyaAB/Aranya-Simplify/_packaging/ARA-SIMPLIFY-FEED/pypi/simple/"
+default = false
+secondary = false
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
