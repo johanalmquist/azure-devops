@@ -15,7 +15,7 @@ ara-azure-jwt = "^0.0.8"
 [[tool.poetry.source]]
 name = "aranya"
 url = "https://pkgs.dev.azure.com/AranyaAB/Aranya-Simplify/_packaging/ARA-SIMPLIFY-FEED/pypi/simple/"
-default = false
+default = true
 secondary = false
 
 [build-system]
