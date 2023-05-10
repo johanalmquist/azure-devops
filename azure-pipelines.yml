@@ -16,6 +16,6 @@ pool:
   vmImage: ubuntu-latest
 
 extends:
-  template: my-template.yaml@templates
+  template: build_and_deploy@templates
   parameters:
     appName: "my-app"
