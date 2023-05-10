@@ -30,7 +30,7 @@ steps:
   - task: AzureFileCopy@4
     inputs:
       SourcePath: "version.env"
-      azureSubscription: "$(azureSubscription)"
+      azureSubscription: "johan-testing-sc"
       Destination: "AzureBlob"
       storage: "arajohantesting"
       ContainerName: "blobs"
