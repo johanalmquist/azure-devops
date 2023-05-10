@@ -2,7 +2,7 @@
 FROM python:3.9-slim as builder
 ARG INDEX_URL
 
-ENV INDEX_URL=$INDEX_URL
+ENV PIP_EXTRA_INDEX_URL=${INDEX_URL}
 #RUN apk add --update python3 py-pip python3-dev cmake gcc g++ openssl1.1-compat-dev build-base
 RUN apt-get update && apt-get install -y build-essential cmake libssl-dev libffi-dev python3-dev tzdata
 
