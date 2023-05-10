@@ -29,12 +29,12 @@ steps:
     displayName: "Print TESTVERSION"
   - task: AzureFileCopy@2
     inputs:
-      SourcePath: "$(Build.StagingDirectory)/filehej.txt"
+      SourcePath: "filehej.txt"
       azureSubscription: "johan-testing-sc"
       Destination: "AzureBlob"
       storage: "arajohantesting"
       ContainerName: "blobs"
-      BlobPrefix: "test"
+      BlobPrefix: ""
     name: AzureFileCopy
 
   - script: |
