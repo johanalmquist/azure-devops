@@ -27,3 +27,16 @@ steps:
     displayName: "Print env"
   - bash: echo "$(TESTVERSION)"
     displayName: "Print TESTVERSION"
+  - task: AzureFileCopy@4
+    inputs:
+      SourcePath: "version.env"
+      azureSubscription: "$(azureSubscription)"
+      Destination: "AzureBlob"
+      storage: "arajohantesting"
+      ContainerName: "blobs"
+      BlobPrefix: ""
+    name: AzureFileCopy
+
+  - script: |
+      echo $(AzureFileCopy.StorageContainerUri)
+      echo $(AzureFileCopy.StorageContainerSasToken)
