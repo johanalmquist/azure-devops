@@ -21,11 +21,9 @@ pool:
 
 steps:
   - bash: |
-      set -a
-      source version.env
-      set +a
+      echo "##vso[task.setvariable variable=TESTVERSION]$(cat version.env)"
     displayName: "Load version.env"
   - bash: env
     displayName: "Print env"
-  - bash: echo $(TESTVERSION)
+  - bash: echo "$(TESTVERSION)"
     displayName: "Print TESTVERSION"
