@@ -3,11 +3,11 @@ branches:
   main:
     mode: ContinuousDelivery
     tag: staging
-    increment: Patch
+    increment: Minor
     prevent-increment-of-merged-branch-version: true
     track-merge-target: false
     regex: ^master$|^main$
-    tracks-release-branches: true
+    tracks-release-branches: false
     is-release-branch: false
   release:
     mode: ContinuousDelivery
