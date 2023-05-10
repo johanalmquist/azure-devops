@@ -27,7 +27,7 @@ steps:
     displayName: "Print env"
   - bash: echo "$(TESTVERSION)"
     displayName: "Print TESTVERSION"
-  - task: AzureFileCopy@4
+  - task: AzureFileCopy@2
     inputs:
       SourcePath: "$(Build.StagingDirectory)/filehej.txt"
       azureSubscription: "johan-testing-sc"
