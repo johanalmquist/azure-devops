@@ -1,3 +1,9 @@
+resources:
+  repositories:
+    - repository: templates
+      name: Aranya-Devops-Templates/Aranya-Devops-Templates
+      type: git
+
 trigger:
   branches:
     include:
@@ -8,12 +14,6 @@ pr: none
 
 pool:
   vmImage: ubuntu-latest
-
-resources:
-  repositories:
-    - repository: templates
-      name: Aranya-Devops-Templates/Aranya-Devops-Templates
-      type: git
 
 variables:
   - template: commonVariables.yaml@templates
