@@ -1,4 +1,4 @@
-
+--extra-index-url https://pkgs.dev.azure.com/AranyaAB/Aranya-Simplify/_packaging/ARA-SIMPLIFY-FEED/pypi/simple
 
 anyio==3.6.2 ; python_version >= "3.9" and python_version < "4.0"
 ara-azure-jwt==0.0.8 ; python_version >= "3.9" and python_version < "4.0"
