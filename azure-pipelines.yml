@@ -12,8 +12,7 @@ trigger:
 
 pr: none
 
-pool:
-  vmImage: ara-devops-agents-01
+pool: ara-devops-agents-01
 
 extends:
   template: build_and_deploy.yaml@templates
