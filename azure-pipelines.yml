@@ -27,7 +27,7 @@ steps:
     displayName: "Print env"
   - bash: echo "$(TESTVERSION)"
     displayName: "Print TESTVERSION"
-  - task: AzureFileCopy@5
+  - task: AzureFileCopy@4
     inputs:
       SourcePath: "version.env"
       azureSubscription: "johan-testing-sc"
