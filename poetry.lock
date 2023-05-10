@@ -677,4 +677,4 @@ reference = "aranya"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "d3587e730f2d8977a707828335b518fd7f49106e303317d9e84dde7e74944a5c"
+content-hash = "9eb2c98d9a469b0f8b156de005875db70270cdbd92afcf770de7498fb14f2038"
