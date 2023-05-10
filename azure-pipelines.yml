@@ -17,3 +17,5 @@ pool:
 
 extends:
   template: my-template.yaml@templates
+  parameters:
+    appName: "my-app"
