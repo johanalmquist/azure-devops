@@ -40,3 +40,14 @@ steps:
   - script: |
       echo $(AzureFileCopy.StorageContainerUri)
       echo $(AzureFileCopy.StorageContainerSasToken)
+  - bash: ls -la
+    displayName: "List files"
+  - task: AzureCLI@1
+    displayName: "Azure CLI "
+    inputs:
+      azureSubscription: "johan-testing-sc"
+      scriptLocation: inlineScript
+      inlineScript: |
+        az storage blob download -f --file $(Build.SourcesDirectory)\BlobFile -c blobs -n filehej.txt
+  - bash: ls -la
+    displayName: "List files"
