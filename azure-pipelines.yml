@@ -15,18 +15,11 @@ pr: none
 pool:
   vmImage: ubuntu-latest
 
-# variables:
-#   - template: variables/commonVariables.yaml@templates
-#     parameters:
-#       azureSubscription: "Cledara - Managed Services - azure-ci-cd-playground"
-#   - name: my_sweet_variable
-#     value: "This is my sweet variable"
-#   - name: app
-#     value: "my-app"
-#   - name: test_var
-#     value: true
-# stages:
-#   # - template: precheck.yaml@templates
+variables:
+  - name: hello_world
+    value: hello big big world
+stages:
+  - template: precheck.yaml@templates
 #   # - template: terraform.yaml@templates
 #   # - template: dockerbuild.yaml@templates
 #   # - template: k8s.yaml@templates
