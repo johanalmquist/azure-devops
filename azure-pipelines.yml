@@ -34,4 +34,4 @@ variables:
 #   - template: blocks/printStage.yaml@templates
 
 extends:
-  template: my-template.yaml
+  template: my-template.yaml@templates
