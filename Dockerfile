@@ -1,5 +1,5 @@
 # FROM python:3.9-alpine as builder
-FROM python:3.10-slim as builder
+FROM python:3.9-slim as builder
 ARG INDEX_URL
 
 ENV INDEX_URL=$INDEX_URL
@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y build-essential cmake libssl-dev libffi
 COPY requirements.txt .
 RUN pip install --user --no-cache-dir -r requirements.txt
 
-FROM python:3.10-slim
+FROM python:3.9-slim
 COPY --from=builder /root/.local /root/.local
 ENV TZ=Europe/Stockholm
 ENV PATH=/root/.local/bin:$PATH
