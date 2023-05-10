@@ -1,0 +1,30 @@
+resources:
+  repositories:
+    - repository: templates
+      name: Aranya-Devops-Templates/Aranya-Devops-Templates
+      type: git
+
+trigger:
+  branches:
+    include:
+      - main
+      - develop
+
+pr: none
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  - name: hello_world
+    value: hello big big world
+# stages:
+#   - template: precheck.yaml@templates
+#   # - template: terraform.yaml@templates
+#   # - template: dockerbuild.yaml@templates
+#   # - template: k8s.yaml@templates
+#   - template: blocks/gitversionStage.yaml@templates
+#   - template: blocks/printStage.yaml@templates
+
+extends:
+  template: my-template.yaml@templates
