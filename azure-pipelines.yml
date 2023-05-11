@@ -20,3 +20,4 @@ extends:
     appName: "johans-test-app"
     azureSubscription: "johan-testing-sc"
     runForPython: true
+    artifactFeeds: "azure-ci-cd-playground/ARA-PLAYGROUND-FEED"
