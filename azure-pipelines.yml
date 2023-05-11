@@ -19,3 +19,4 @@ extends:
   parameters:
     appName: "johans-test-app"
     azureSubscription: "johan-testing-sc"
+    runForPython: true
