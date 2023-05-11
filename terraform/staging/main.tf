@@ -7,40 +7,86 @@ terraform {
       source  = "hashicorp/azurerm"
       version = "=3.24.0" # Telling terraform to use the exat version 3.24.0 of AzureRM
     }
-    http = {
-      source  = "hashicorp/http"
-      version = "3.3.0"
+    postgresql = {
+      source  = "cyrilgdn/postgresql"
+      version = "1.17.1"
     }
-
   }
   backend "azurerm" {
     resource_group_name  = "ara-terraform"
     storage_account_name = "araterraform"
     container_name       = "services-tfstate"
-    key                  = "johan-testing-staging.tfstate"
+    key                  = "${service_name}-${environment}.tfstate"
   }
 }
-provider "azurerm" {}
-
-data "http" "example" {
-  url = "https://checkpoint-api.hashicorp.com/v1/check/terraform"
-
-  # Optional request headers
-  request_headers = {
-    Accept         = "application/json"
-    x-service_name = "${var.SERVICE_NAME}"
-    x-environment  = "${var.ENVIRONMENT}"
+provider "azurerm" {
+  features {
+    key_vault {
+      purge_soft_delete_on_destroy = true
+    }
   }
 }
 
-output "latest_version" {
-  value = jsondecode(data.http.example.response_body)
+#####################
+# COMMON AZURE DATA #
+#####################
+
+data "azurerm_client_config" "current" {}
+
+
+data "azurerm_resource_group" "ara-managed-services" {
+  name = "ara-managed-services-${var.environment}"
 }
 
-output "respone_code" {
-  value = data.http.example.status_code
+data "azurerm_key_vault" "aranya-kv" {
+  name                = "aranya-ms-kv-01-${var.environment}"
+  resource_group_name = data.azurerm_resource_group.ara-managed-services.name
 }
 
-output "response_headers" {
-  value = data.http.example.request_headers
+###############################
+# POSTGRESQL FLEXIBLE SERVERS #
+###############################
+
+# Get root password to postgresql server
+data "azurerm_key_vault_secret" "postgresql_password" {
+  name         = "psql-flex-staging-aranya-password"
+  key_vault_id = data.azurerm_key_vault.aranya-kv.id
+}
+
+data "azurerm_postgresql_flexible_server" "postgresql" {
+  name                = "ara-managed-services-psql-${var.environment}"
+  resource_group_name = data.azurerm_resource_group.ara-managed-services.name
+}
+
+#Setup postgresql provider
+provider "postgresql" {
+  host            = data.azurerm_postgresql_flexible_server.postgresql.fqdn
+  port            = 5432
+  database        = "postgres" # system databse
+  username        = data.azurerm_postgresql_flexible_server.postgresql.administrator_login
+  password        = data.azurerm_key_vault_secret.postgresql_password.value
+  sslmode         = "require"
+  superuser       = false # set to false then this user it not a superuser
+  connect_timeout = 60
+}
+
+# Create database user for this service
+resource "random_password" "database_password" {
+  length           = 16
+  special          = true
+  override_special = "!#$%&*()-_=+[]{}<>:?"
+}
+
+resource "postgresql_role" "database_user" {
+  name     = var.service_name
+  login    = true
+  password = random_password.database_password.result
+}
+
+resource "postgresql_database" "service_database" {
+  name  = var.service_name
+  owner = postgresql_role.database_user.name
+  depends_on = [
+    postgresql_role.database_user
+  ]
 }
