@@ -1,5 +1,5 @@
 #####################################
-# SET UP TERRAFORM PROVIDERS TO USE ##
+# SET UP TERRAFORM PROVIDERS TO USE #
 #####################################
 terraform {
   required_providers {
