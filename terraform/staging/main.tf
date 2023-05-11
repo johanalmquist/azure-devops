@@ -44,7 +44,7 @@ data "azurerm_key_vault" "aranya-kv" {
 }
 
 ###############################
-# POSTGRESQL FLEXIBLE SERVERS #
+# POSTGRESQL FLEXIBLE SERVERS ##
 ###############################
 
 # Get root password to postgresql server
