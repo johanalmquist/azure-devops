@@ -1,5 +1,5 @@
 #####################################
-# SET UP TERRAFORM PROVIDERS TO USE ##
+# SET UP TERRAFORM PROVIDERS TO USE #
 #####################################
 terraform {
   required_providers {
@@ -88,7 +88,7 @@ resource "postgresql_role" "group" {
   skip_reassign_owned = true
 
   provisioner "local-exec" {
-    command = "PGPASSWORD='${data.azurerm_key_vault_secret.postgresql_password.value}' psql -h ${data.azurerm_postgresql_flexible_server.postgresql.fqdn} -U ${data.azurerm_postgresql_flexible_server.postgresql.administrator_login} postgres -c 'GRANT ${self.name} TO ${data.azurerm_postgresql_flexible_server.postgresql.administrator_login}, ${postgresql_role.database_user.name};'"
+    command = "PGPASSWORD=${data.azurerm_key_vault_secret.postgresql_password.value} psql -h ${data.azurerm_postgresql_flexible_server.postgresql.fqdn} -U ${data.azurerm_postgresql_flexible_server.postgresql.administrator_login} postgres -c 'GRANT ${self.name} TO ${data.azurerm_postgresql_flexible_server.postgresql.administrator_login}, ${postgresql_role.database_user.name};'"
   }
 }
 
