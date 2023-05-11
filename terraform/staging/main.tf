@@ -81,12 +81,21 @@ resource "postgresql_role" "database_user" {
   name     = var.SERVICE_NAME
   login    = true
   password = random_password.database_password.result
+  provisioner "local-exec" {
+    command = "PGPASSWORD=${random_password.database_password.result} psql -h ${data.azurerm_postgresql_flexible_server.postgresql.fqdn} -U ${var.SERVICE_NAME} postgres -c 'GRANT ${self.name} TO ${data.azurerm_postgresql_flexible_server.postgresql.administrator_login}, ${postgresql_role.database_user.name};'"
+  }
+}
+
+resource "postgresql_role" "group" {
+  name                = "${postgresql_role.database_user.name}_group"
+  skip_reassign_owned = true
+
+  provisioner "local-exec" {
+    command = "PGPASSWORD=${data.azurerm_key_vault_secret.postgresql_password.value} psql -h ${data.azurerm_postgresql_flexible_server.postgresql.fqdn} -U ${data.azurerm_postgresql_flexible_server.postgresql.administrator_login} postgres -c 'GRANT ${self.name} TO ${data.azurerm_postgresql_flexible_server.postgresql.administrator_login}, ${postgresql_role.app.name};'"
+  }
 }
 
 resource "postgresql_database" "service_database" {
-  name  = "${var.SERVICE_NAME}-new"
-  owner = postgresql_role.database_user.name
-  depends_on = [
-    postgresql_role.database_user
-  ]
+  name  = var.SERVICE_NAME
+  owner = postgresql_role.group.name
 }
