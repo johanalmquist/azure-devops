@@ -84,7 +84,7 @@ resource "postgresql_role" "database_user" {
 }
 
 resource "postgresql_database" "service_database" {
-  name  = var.SERVICE_NAME
+  name  = "${var.SERVICE_NAME}-new"
   owner = postgresql_role.database_user.name
   depends_on = [
     postgresql_role.database_user
