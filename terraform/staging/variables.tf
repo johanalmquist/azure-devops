@@ -1,9 +1,9 @@
-variable "service_name" {
+variable "SERVICE_NAME" {
   type     = string
   nullable = false
 }
 
-variable "environment" {
+variable "ENVIRONMENT" {
   type     = string
   nullable = false
 }

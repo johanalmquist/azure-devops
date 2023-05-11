@@ -28,8 +28,8 @@ data "http" "example" {
   # Optional request headers
   request_headers = {
     Accept         = "application/json"
-    x-service_name = "${var.service_name}"
-    x-environment  = "${var.environment}"
+    x-service_name = "${var.SERVICE_NAME}"
+    x-environment  = "${var.ENVIRONMENT}"
   }
 }
 
