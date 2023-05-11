@@ -19,6 +19,7 @@ extends:
   parameters:
     appName: "johans-test-app"
     azureSubscription: "johan-testing-sc"
-    runForPython: true
+    runForPython: false
     useGitVersion: false
     artifactFeeds: "azure-ci-cd-playground/ARA-PLAYGROUND-FEED"
+    useTerraform: false
