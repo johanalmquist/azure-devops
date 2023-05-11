@@ -29,6 +29,7 @@ data "http" "example" {
   request_headers = {
     Accept         = "application/json"
     x-service_name = "${var.service_name}"
+    x-environment  = "${var.environment}"
   }
 }
 
