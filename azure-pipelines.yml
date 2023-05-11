@@ -3,6 +3,7 @@ resources:
     - repository: templates
       name: Aranya-Devops-Templates/Aranya-Devops-Templates
       type: git
+      ref: refs/branches/main
 
 trigger:
   branches:
@@ -17,3 +18,4 @@ extends:
   template: build_and_deploy.yaml@templates
   parameters:
     appName: "johans-test-app"
+    azureSubscription: "johan-testing-sc"
