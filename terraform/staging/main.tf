@@ -16,7 +16,7 @@ terraform {
     resource_group_name  = "ara-terraform"
     storage_account_name = "araterraform"
     container_name       = "services-tfstate"
-    key                  = "${service_name}-${environment}.tfstate"
+    key                  = "${SERVICE_NAME}-${ENVIRONMENT}.tfstate"
   }
 }
 provider "azurerm" {
@@ -35,11 +35,11 @@ data "azurerm_client_config" "current" {}
 
 
 data "azurerm_resource_group" "ara-managed-services" {
-  name = "ara-managed-services-${var.environment}"
+  name = "ara-managed-services-${var.ENVIRONMENT}"
 }
 
 data "azurerm_key_vault" "aranya-kv" {
-  name                = "aranya-ms-kv-01-${var.environment}"
+  name                = "aranya-ms-kv-01-${var.ENVIRONMENT}"
   resource_group_name = data.azurerm_resource_group.ara-managed-services.name
 }
 
@@ -54,7 +54,7 @@ data "azurerm_key_vault_secret" "postgresql_password" {
 }
 
 data "azurerm_postgresql_flexible_server" "postgresql" {
-  name                = "ara-managed-services-psql-${var.environment}"
+  name                = "ara-managed-services-psql-${var.ENVIRONMENT}"
   resource_group_name = data.azurerm_resource_group.ara-managed-services.name
 }
 
@@ -78,13 +78,13 @@ resource "random_password" "database_password" {
 }
 
 resource "postgresql_role" "database_user" {
-  name     = var.service_name
+  name     = var.SERVICE_NAME
   login    = true
   password = random_password.database_password.result
 }
 
 resource "postgresql_database" "service_database" {
-  name  = var.service_name
+  name  = var.SERVICE_NAME
   owner = postgresql_role.database_user.name
   depends_on = [
     postgresql_role.database_user
