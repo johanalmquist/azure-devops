@@ -3,7 +3,7 @@ resources:
     - repository: templates
       name: Aranya-Devops-Templates/Aranya-Devops-Templates
       type: git
-      ref: refs/branches/main
+      ref: refs/heads/main
 
 trigger:
   branches:
