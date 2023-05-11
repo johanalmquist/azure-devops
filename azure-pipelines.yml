@@ -3,7 +3,7 @@ resources:
     - repository: templates
       name: Aranya-Devops-Templates/Aranya-Devops-Templates
       type: git
-      ref: refs/heads/bla
+      ref: refs/heads/main # pin to stable version of the repo
 
 trigger:
   branches:
