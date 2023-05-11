@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: johans-test-app
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 80
+  selector:
+    app: johans-test-app

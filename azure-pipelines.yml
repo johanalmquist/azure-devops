@@ -12,42 +12,8 @@ trigger:
 
 pr: none
 
-pool:
-  vmImage: windows-latest
-# extends:
-#   template: build_and_deploy.yaml@templates
-#   parameters:
-#     appName: "my-app"
-
-steps:
-  - bash: |
-      echo "##vso[task.setvariable variable=TESTVERSION]$(cat version.env)"
-    displayName: "Load version.env"
-  - bash: env
-    displayName: "Print env"
-  - bash: echo "$(TESTVERSION)"
-    displayName: "Print TESTVERSION"
-  - task: AzureFileCopy@2
-    inputs:
-      SourcePath: "filehej.txt"
-      azureSubscription: "johan-testing-sc"
-      Destination: "AzureBlob"
-      storage: "arajohantesting"
-      ContainerName: "blobs"
-      BlobPrefix: ""
-    name: AzureFileCopy
-
-  - script: |
-      echo $(AzureFileCopy.StorageContainerUri)
-      echo $(AzureFileCopy.StorageContainerSasToken)
-  - bash: ls -la
-    displayName: "List files"
-  - task: AzureCLI@1
-    displayName: "Azure CLI "
-    inputs:
-      azureSubscription: "johan-testing-sc"
-      scriptLocation: inlineScript
-      inlineScript: |
-        az storage blob download --file $(Build.SourcesDirectory)\BlobFile -c blobs -n filehej.txt
-  - bash: ls -la
-    displayName: "List files"
+pool: ara-devops-agents-01
+extends:
+  template: build_and_deploy.yaml@templates
+  parameters:
+    appName: "johans-test-app"

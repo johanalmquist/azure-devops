@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: johans-test-app
+  annotations:
+    kubernetes.io/tls-acme: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  ingressClassName: kong-keycloak-internal
+  tls:
+    - secretName: johans-test-app-api-staging-int-aranya-se
+      hosts:
+        - johans-test-app.staging.int.aranya.se
+  rules:
+    - host: johans-test-app.staging.int.aranya.se
+      http:
+        paths:
+          - path: "/"
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: johans-test-app
+                port:
+                  number: 80

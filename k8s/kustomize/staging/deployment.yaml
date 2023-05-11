@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: johans-test-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: johans-test-app
+  template:
+    metadata:
+      labels:
+        app: johans-test-app
+    spec:
+      containers:
+        - name: johans-test-app
+          image: aranyaprivate.azurecr.io/johans-test-app
+          imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                name: johans-test-app
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+          ports:
+            - containerPort: 80
+              name: http
