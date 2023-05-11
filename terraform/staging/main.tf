@@ -27,7 +27,8 @@ data "http" "example" {
 
   # Optional request headers
   request_headers = {
-    Accept = "application/json"
+    Accept         = "application/json"
+    x-service_name = "${var.service_name}"
   }
 }
 
@@ -37,4 +38,8 @@ output "latest_version" {
 
 output "respone_code" {
   value = data.http.example.status_code
+}
+
+output "response_headers" {
+  value = data.http.example.request_headers
 }
