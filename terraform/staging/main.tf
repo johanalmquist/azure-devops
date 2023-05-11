@@ -28,7 +28,7 @@ provider "azurerm" {
 }
 
 #####################
-# COMMON AZURE DATA #
+# COMMON AZURE DATA ##
 #####################
 
 data "azurerm_client_config" "current" {}
