@@ -17,9 +17,7 @@ pool: ara-devops-agents-01
 extends:
   template: build_and_deploy.yaml@templates
   parameters:
-    appName: |
-      my cool app 
-      hej hej
+    appName: "johans-test-app"
     azureSubscription: "johan-testing-sc"
     runForPython: true
     useGitVersion: false
