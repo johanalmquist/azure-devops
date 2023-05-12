@@ -17,9 +17,11 @@ pool: ara-devops-agents-01
 extends:
   template: build_and_deploy.yaml@templates
   parameters:
-    appName: "johans-test-app"
+    appName: |
+      my cool app 
+      hej hej
     azureSubscription: "johan-testing-sc"
-    runForPython: false
+    runForPython: true
     useGitVersion: false
     artifactFeeds: "azure-ci-cd-playground/ARA-PLAYGROUND-FEED"
     useTerraform: false
