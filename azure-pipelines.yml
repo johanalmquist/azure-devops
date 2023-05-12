@@ -14,12 +14,18 @@ trigger:
 pr: none
 
 pool: ara-devops-agents-01
-extends:
-  template: build_and_deploy.yaml@templates
-  parameters:
-    appName: "johans-test-app"
-    azureSubscription: "johan-testing-sc"
-    runForPython: true
-    useGitVersion: false
-    artifactFeeds: "azure-ci-cd-playground/ARA-PLAYGROUND-FEED"
-    useTerraform: false
+# extends:
+#   template: build_and_deploy.yaml@templates
+#   parameters:
+#     appName: "johans-test-app"
+#     azureSubscription: "johan-testing-sc"
+#     runForPython: true
+#     useGitVersion: false
+#     artifactFeeds: "azure-ci-cd-playground/ARA-PLAYGROUND-FEED"
+#     useTerraform: false
+stages:
+  - template: blocks/precheck.yaml@templates
+    parameters:
+      checkRules: |
+        [runBuild]
+        myfolder/**/*
