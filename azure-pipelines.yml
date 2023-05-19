@@ -27,5 +27,8 @@ stages:
   - template: blocks/pytestStage.yaml@templates
     parameters:
       requirementsFile: requirements-dev.txt
-  - template: blocks/gitversionStage.yaml@templates
-  - template: blocks/printStage.yaml@templates
+  - stage: printStuff
+    jobs:
+      - job: printStuff
+        steps:
+          - script: echo "Hello world"
