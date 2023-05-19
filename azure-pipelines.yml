@@ -24,8 +24,8 @@ pool: ara-devops-agents-01
 #     artifactFeeds: "azure-ci-cd-playground/ARA-PLAYGROUND-FEED"
 #     useTerraform: false
 stages:
-  - template: blocks/precheck.yaml@templates
+  - template: blocks/pytestStage.yaml@templates
     parameters:
-      checkRules: |
-        [runBuild]
-        myfolder/**/*
+      requirementsFile: requirements-dev.txt
+
+  - template: blocks/printStage.yaml@templates
