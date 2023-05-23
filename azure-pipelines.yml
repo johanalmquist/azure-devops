@@ -28,5 +28,5 @@ stages:
     jobs:
       - job: printStuff
         steps:
-          - script: echo "Hello world"
+          - script: echo "Hello worldd"
           - script: echo "Build number $(Build.BuildNumber)"
