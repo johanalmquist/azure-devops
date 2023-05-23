@@ -43,6 +43,6 @@ stages:
     jobs:
       - job: buildPush
         steps:
-          - template: steps/pipAuthenticate.yaml
+          - template: steps/pipAuthenticate.yaml@templates
             parameters:
               onlyAddExtraIndex: true
