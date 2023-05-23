@@ -14,27 +14,19 @@ trigger:
 pr: none
 
 variables:
-  # - template: variables/commonVariables.yaml@templates
-  #   parameters:
-  #     appName: "Johan-Test"
-  ${{ if eq(variables['Build.Reason'], 'PullRequest') }}:
-    why: pr
-  ${{ elseif eq(variables['Build.Reason'], 'Manual' ) }}:
-    why: manual
-  ${{ elseif eq(variables['Build.Reason'], 'IndividualCI' ) }}:
-    why: indivci
-  ${{ else }}:
-    why: other
+  - template: variables/commonVariables.yaml@templates
+    parameters:
+      appName: "Johan-Test"
 
-name: $(SourceBranchName)_$(why).$(Date:yyyyMMdd)$(Rev:.r)
+name: $(appName)-$(environment).$(Date:yyyyMMdd)$(Rev:.r)
 
 pool:
   vmImage: ubuntu-latest
 stages:
-  #- template: blocks/gitversionStage.yaml@templates
+  - template: blocks/gitversionStage.yaml@templates
   - stage: printStuff
     jobs:
       - job: printStuff
         steps:
-          - script: echo "Hello worldd"
+          - script: echo "Hello world"
           - script: echo "Build number $(Build.BuildNumber)"
