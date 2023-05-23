@@ -46,3 +46,6 @@ stages:
           - template: steps/pipAuthenticate.yaml@templates
             parameters:
               onlyAddExtraIndex: true
+          - template: steps/dockerBuild.yaml@templates
+            parameters:
+              buildArguments: --build-arg INDEX_URL=$(PIP_EXTRA_INDEX_URL)
