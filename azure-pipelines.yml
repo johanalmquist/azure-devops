@@ -38,8 +38,15 @@ pool:
   vmImage: ubuntu-latest
 stages:
   #- template: blocks/gitversionStage.yaml@templates
-  - template: blocks/pytestStage.yaml@templates
+  - stage: pytest
+    displayName: Pytest
+    jobs:
+      - job: pytest
+        steps:
+          - script: echo "Placeholder for pytest"
   - stage: buildPush
+    dependsOn: pytest
+    condition: and(succeeded(), eq(variables['deploy'], true))
     displayName: Build and Push
     jobs:
       - job: buildPush
