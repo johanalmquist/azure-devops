@@ -5,7 +5,7 @@ minor-version-bump-message: '\+semver:\s?(feature|minor)'
 patch-version-bump-message: '\+semver:\s?(fix|patch)'
 branches:
   main:
-    mode: ContinuousDeployment
+    mode: ContinuousDelivery
     regex: ^master$|^main$
     increment: Minor
     prevent-increment-of-merged-branch-version: false
