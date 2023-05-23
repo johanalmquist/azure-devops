@@ -14,7 +14,7 @@ trigger:
 pr: none
 
 variables:
-  - template: variables/commonVariables.yml@templates
+  - template: variables/commonVariables.yaml@templates
     parameters:
       appName: "Johan-Test"
 
