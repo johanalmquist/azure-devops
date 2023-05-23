@@ -14,11 +14,19 @@ trigger:
 pr: none
 
 variables:
-  - template: variables/commonVariables.yaml@templates
-    parameters:
-      appName: "Johan-Test"
+  # - template: variables/commonVariables.yaml@templates
+  #   parameters:
+  #     appName: "Johan-Test"
+  ${{ if eq(variables['Build.Reason'], 'PullRequest') }}:
+    why: pr
+  ${{ elseif eq(variables['Build.Reason'], 'Manual' ) }}:
+    why: manual
+  ${{ elseif eq(variables['Build.Reason'], 'IndividualCI' ) }}:
+    why: indivci
+  ${{ else }}:
+    why: other
 
-name: $(piplineName).$(Date:yyyyMMdd)$(Rev:.r)
+name: $(SourceBranchName)_$(why).$(Date:yyyyMMdd)$(Rev:.r)
 
 pool:
   vmImage: ubuntu-latest
