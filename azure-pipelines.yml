@@ -38,6 +38,8 @@ pool:
   vmImage: ubuntu-latest
 stages:
   - template: blocks/gitversionStage.yaml@templates
+    parameters:
+      useConfigFile: false
   - ${{ if eq(variables['testOnly'], 'true') }}:
       - stage: printStuff
         jobs:
