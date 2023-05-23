@@ -37,12 +37,13 @@ pool:
   vmImage: ubuntu-latest
 stages:
   - template: blocks/gitversionStage.yaml@templates
-  - stage: printStuff
-    jobs:
-      - job: printStuff
-        steps:
-          - script: echo "Hello world"
-          - script: echo "Build number $(Build.BuildNumber)"
+  - ${{ if eq(variables['testOnly'], 'false') }}:
+      - stage: printStuff
+        jobs:
+          - job: printStuff
+            steps:
+              - script: echo "Hello world"
+              - script: echo "Build number $(Build.BuildNumber)"
   - ${{ if eq(variables['testOnly'], 'false') }}:
       - stage: printStuff
         jobs:
