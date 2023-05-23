@@ -41,4 +41,9 @@ stages:
   - stage: buildPush
     displayName: Build and Push
     jobs:
+      - template: steps/pipAuthenticate.yaml@templates
+        paramters:
+          onlyAddExtraIndex: true
       - template: jobs/docker.yaml@templates
+        paramters:
+          buildArguments: --build-arg INDEX_URL=$(PIP_EXTRA_INDEX_URL)
