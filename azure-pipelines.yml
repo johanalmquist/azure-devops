@@ -38,6 +38,7 @@ pool:
   vmImage: ubuntu-latest
 stages:
   #- template: blocks/gitversionStage.yaml@templates
+  - template: blocks/pytestStage.yaml@templates
   - stage: buildPush
     displayName: Build and Push
     jobs:
