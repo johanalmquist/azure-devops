@@ -13,22 +13,19 @@ trigger:
 
 pr: none
 
-pool: ara-devops-agents-01
-# extends:
-#   template: build_and_deploy.yaml@templates
-#   parameters:
-#     appName: "johans-test-app"
-#     azureSubscription: "johan-testing-sc"
-#     runForPython: true
-#     useGitVersion: false
-#     artifactFeeds: "azure-ci-cd-playground/ARA-PLAYGROUND-FEED"
-#     useTerraform: false
-stages:
-  - template: blocks/pytestStage.yaml@templates
+variables:
+  - template: variables/commonVariables.yml@templates
     parameters:
-      requirementsFile: requirements-dev.txt
+      appName: "Johan-Test"
+
+name: $(appName).$(environment).$(Date:yyyyMMdd)$(Rev:.r)
+
+pool:
+  vmImage: ubuntu-latest
+stages:
   - stage: printStuff
     jobs:
       - job: printStuff
         steps:
           - script: echo "Hello world"
+          - script: echo "Build number $(Build.BuildNumber)"
