@@ -18,7 +18,7 @@ variables:
     parameters:
       appName: "Johan-Test"
 
-name: $(appName)-$(environment).$(Date:yyyyMMdd).$(Build.BuildId)
+name: $(appName)-$(environment).$(Date:yyyyMMdd)$(Rev:.r)
 
 pool:
   vmImage: ubuntu-latest
