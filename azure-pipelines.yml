@@ -20,7 +20,7 @@ variables:
     parameters:
       appName: "Johan-Test"
   - name: deploy
-    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/feature/*') }}:
+    ${{ if in(variables['Build.SourceBranch'], 'refs/heads/feature/*') }}:
       value: false
     ${{ elseif eq(variables['Build.Reason'], 'PullRequest') }}:
       value: false
