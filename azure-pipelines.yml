@@ -11,12 +11,25 @@ trigger:
       - main
       - develop
 
-pr: none
+pr:
+  - main
 
 variables:
   - template: variables/commonVariables.yaml@templates
     parameters:
       appName: "Johan-Test"
+  - name: deploy
+    ${{ if startsWith(variables['Build.SourceBranchName'], 'feature') }}:
+      value: false
+    ${{ elseif eq(variables['Build.Reason'], 'PullRequest') }}:
+      value: false
+    ${{ else }}:
+      value: true
+  - name: testOnly
+    ${{ if eq(variables['Build.Reason'], 'PullRequest') }}:
+      value: true
+    ${{else}}:
+      value: false
 
 name: $(appName)-$(environment).$(Date:yyyyMMdd)$(Rev:.r)
 
@@ -30,3 +43,23 @@ stages:
         steps:
           - script: echo "Hello world"
           - script: echo "Build number $(Build.BuildNumber)"
+  - ${{ if eq(variables['testOnly'], 'false') }}:
+      - stage: printStuff
+        jobs:
+          - job: printStuff
+            steps:
+              - script: echo "Hello world"
+              - script: echo "Build number $(Build.BuildNumber)"
+      - stage: buildStuff
+        jobs:
+          - job: buildStuff
+            steps:
+              - script: echo "Building stuff"
+  - ${{ if eq(variables['deploy'], 'true') }}:
+    stage: deployStuff
+    dependsOn: buildStuff
+    condition: succeeded('buildStuff')
+    jobs:
+      - job: deployStuff
+        steps:
+          - script: echo "Deploying stuff"
