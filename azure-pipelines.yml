@@ -56,10 +56,10 @@ stages:
             steps:
               - script: echo "Building stuff"
   - ${{ if eq(variables['deploy'], 'true') }}:
-    stage: deployStuff
-    dependsOn: buildStuff
-    condition: succeeded('buildStuff')
-    jobs:
-      - job: deployStuff
-        steps:
-          - script: echo "Deploying stuff"
+      - stage: deployStuff
+        dependsOn: buildStuff
+        condition: succeeded('buildStuff')
+        jobs:
+          - job: deployStuff
+            steps:
+              - script: echo "Deploying stuff"
