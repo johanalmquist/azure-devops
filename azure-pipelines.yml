@@ -20,7 +20,7 @@ variables:
     parameters:
       appName: "Johan-Test"
   - name: deploy
-    ${{ if startsWith(variables['Build.SourceBranchName'], 'feature') }}:
+    ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/feature/*') }}:
       value: false
     ${{ elseif eq(variables['Build.Reason'], 'PullRequest') }}:
       value: false
@@ -45,7 +45,8 @@ stages:
             steps:
               - script: echo "Hello world"
               - script: echo "Build number $(Build.BuildNumber)"
-              - script: echo "Branch name $(Build.SourceBranchName)"
+              - script: echo "Branch name $(Build.SourceBranch)"
+              - script: echo "Build reason $(Build.Reason)"
   - ${{ if eq(variables['testOnly'], 'false') }}:
       - stage: printStuff
         jobs:
@@ -53,7 +54,8 @@ stages:
             steps:
               - script: echo "Hello world"
               - script: echo "Build number $(Build.BuildNumber)"
-              - script: echo "Branch name $(Build.SourceBranchName)"
+              - script: echo "Branch name $(Build.SourceBranch)"
+              - script: echo "Build reason $(Build.Reason)"
       - stage: buildStuff
         jobs:
           - job: buildStuff
