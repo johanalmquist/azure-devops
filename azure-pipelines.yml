@@ -18,12 +18,12 @@ variables:
     parameters:
       appName: "Johan-Test"
 
-name: $(appName)-$(environment).$(Date:yyyyMMdd)$(Rev:.r)
+name: $(piplineName)
 
 pool:
   vmImage: ubuntu-latest
 stages:
-  - template: blocks/gitversionStage.yaml@templates
+  #- template: blocks/gitversionStage.yaml@templates
   - stage: printStuff
     jobs:
       - job: printStuff
