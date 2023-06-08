@@ -1,6 +1,17 @@
 mode: ContinuousDeployment
 next-version: 0.0.1
 branches:
+  prod:
+    regex: ^prod$|^production$
+    mode: ContinuousDeployment
+    tag: "prod"
+    increment: Patch
+    prevent-increment-of-merged-branch-version: true
+    track-merge-target: false
+    source-branches: ["main"]
+    tracks-release-branches: false
+    is-release-branch: false
+    pre-release-weight: 55000
   main:
     mode: ContinuousDeployment
     tag: beta

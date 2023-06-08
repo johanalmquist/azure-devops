@@ -13,6 +13,8 @@ trigger:
       - feature/*
       - prod
 
+pr: none
+
 variables:
   - template: variables/commonVariables.yaml@templates
     parameters:
