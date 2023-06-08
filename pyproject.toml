@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "azure-devops"
-version = "0.2.2"
+version = "0.2.3"
 description = ""
 authors = ["Johan Almquist <johan.almquist@aranya.se>"]
 readme = "README.md"
