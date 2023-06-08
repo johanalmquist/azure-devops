@@ -19,6 +19,14 @@ url = "https://pkgs.dev.azure.com/AranyaAB/Aranya-Simplify/_packaging/ARA-SIMPLI
 default = false
 secondary = false
 
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+tag_format = "$version"
+version_type = "semver"
+version_provider = "poetry"
+update_changelog_on_bump = true
+bump_message = "release $current_version → $new_version [skip-ci]"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
