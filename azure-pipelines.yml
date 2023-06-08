@@ -11,9 +11,7 @@ trigger:
       - main
       - develop
       - feature/*
-
-pr:
-  - main
+      - prod
 
 variables:
   - template: variables/commonVariables.yaml@templates
