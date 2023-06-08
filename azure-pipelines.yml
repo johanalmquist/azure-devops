@@ -44,9 +44,10 @@ stages:
       - job: pytest
         steps:
           - script: echo "Placeholder for pytest"
+          - script: echo $(Build.Reason)
   - stage: buildPush
     dependsOn: pytest
-    condition: or(eq(dependencies.precheck.outputs['check.CheckChanges.runBuild'], 'true'), eq(variables['Build.Reason'], 'PullRequest'))
+    condition: or(eq(dependencies.precheck.outputs['check.CheckChanges.runBuild'], 'true'), eq(variables['Build.Reason'], 'Manual'))
     displayName: Build and Push
     jobs:
       - job: buildPush
