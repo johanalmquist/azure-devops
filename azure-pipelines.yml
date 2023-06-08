@@ -45,6 +45,7 @@ stages:
         steps:
           - script: echo "Placeholder for pytest"
           - script: echo $(Build.Reason)
+          - script: echo $(Build.BuildNumber)
   - stage: buildPush
     dependsOn: pytest
     condition: or(eq(dependencies.precheck.outputs['check.CheckChanges.runBuild'], 'true'), eq(variables['Build.Reason'], 'Manual'))
@@ -52,9 +53,4 @@ stages:
     jobs:
       - job: buildPush
         steps:
-          - template: steps/pipAuthenticate.yaml@templates
-            parameters:
-              onlyAddExtraIndex: true
-          - template: steps/dockerBuild.yaml@templates
-            parameters:
-              buildArguments: --build-arg INDEX_URL=$(PIP_EXTRA_INDEX_URL)
+          - script: echo $(Build.BuildNumber)
